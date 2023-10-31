@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="delivery_date" string="Delivery Date"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <button name="open_bom" type="object" string="MO" icon="fa-list"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="before">
+                <field name="index_number" string="Index" optional="hide"/>
+                <field name="full_index" string="Index No."/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="area_type" string="Area Select"/>
+                <field name="product_width" string="Width cm"/>
+                <field name="product_length" string="Length cm"/>
+                <field name="product_area" string="Area m2" attrs="{'invisible': [('area_type','!=','area')]}"/>
+                <field name="product_area" string="Linear m2" attrs="{'invisible': [('area_type','!=','linear')]}"/>
+                <field name="parent_mo_id" string="MO" invisible="1"/>
+                <field name="related_mo_ids" widget="many2many_tags" string="MO"/>
+                <field name="related_products_ids" widget="many2many_tags" string="Pro"/>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']/group[@name='note_group']" position="inside">
+                <p>Total Area</p>
+                <field name="total_areas" string="Total Area" placeholder="Total Area"/>
+            </xpath>
+            <xpath expr="//button[@name='preview_sale_order']" position="after">
+                <button class="oe_stat_button" name="action_view_mrp_production_customes" type="object"
+                        icon="fa-wrench">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">MO</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+
+

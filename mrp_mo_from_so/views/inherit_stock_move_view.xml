@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <!--    <record id="view_inherit_stock_move_tree" model="ir.ui.view">-->
+    <!--        <field name="name">stock.move.detailed.tree.inheritance</field>-->
+    <!--        <field name="model">stock.move</field>-->
+    <!--        <field name="inherit_id" ref="stock.view_move_tree"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <xpath expr="//field[@name='reference']" position="after">-->
+    <!--                <button name="mark_done" string="Draft Rec" type="object"/>-->
+    <!--            </xpath>-->
+    <!--        </field>-->
+    <!--    </record>-->
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record id="view_sec_form" model="ir.ui.view">
+        <field name="name">mo.detail.form.inherit</field>
+        <field name="model">mo.detail</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="parent_mo_id"/>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+
+    <record id="view_sec_tree" model="ir.ui.view">
+        <field name="name">mo.detailtree.inherit</field>
+        <field name="model">mo.detail</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="parent_mo_id"/>
+            </tree>
+
+        </field>
+    </record>
+
+
+
+    <record id="mo_details_action_sales" model="ir.actions.act_window">
+        <field name="name">Descriptions</field>
+        <field name="res_model">mo.detail</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create New Order line Descs
+            </p><p>
+                No Order line Descs
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="mo_details"
+            name="MO Details"
+            parent="sale.sale_order_menu"
+            action="mrp_mo_from_so.mo_details_action_sales"
+            sequence="4"/>
+
+
+
+    <record id="ir_sequence_mo_details" model="ir.sequence">
+        <field name="name">Mo Details</field>
+        <field name="code">mo.details.sequence</field>
+        <field name="prefix">MQ</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+        <field name="number_next">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
