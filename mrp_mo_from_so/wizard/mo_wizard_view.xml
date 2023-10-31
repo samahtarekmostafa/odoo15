@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mo_wizard_form_inherited" model="ir.ui.view">
+        <field name="name">mo.wizard.form.inherited</field>
+        <field name="model">mo.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="product_id"
+                               class="oe_inline"
+                               placeholder="Name"/>
+                    </h1>
+                    <h2>
+                        <field name="product_uom_qty" class="oe_inline" placeholder="Quantity"/>
+                    </h2>
+                    <group>
+                        <field name="get_larger" string="Select Large Area" widget="boolean_toggle"/>
+                        <field name="type" string="Type" widget="radio"/>
+                    </group>
+                    <notebook>
+                        <page string="Components">
+                            <field name="component_ids">
+                                <tree>
+                                    <field name="product_tmpl_id" string="Name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Products">
+                            <field name="product_ids">
+                                <tree>
+                                    <field name="name" string="Name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button type="object" name="create_mo_from_boms" string="Create Mo" class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

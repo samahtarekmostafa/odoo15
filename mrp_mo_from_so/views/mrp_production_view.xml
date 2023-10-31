@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_mrp_production_form" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_mrp_production_backorders']" position="before">
+                <button class="oe_stat_button" name="action_view_mrp_production_childs_customes" type="object"
+                        icon="fa-wrench" attrs="{'invisible': [('mrp_production_child_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="mrp_production_child_count"/>
+                        </span>
+                        <span class="o_stat_text">Child MO</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="delivery_date" string="Delivery Date"/>
+                <field name="mo_detail_ids" string="Quantity MO" widget="many2many_tags"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="is_child" string="Is Child MO" invisible="1"/>
+                <field name="sale_order_id" string="Origin SO"/>
+                <field name="type" string="Type" invisible="1"/>
+                <field name="full_index" string="Index"/>
+                <field name="order_subtotal" invisible="1"/>
+                <field name="order_index" string="Order Index" invisible="1"/>
+                <field name="is_child" string="Is Child" invisible="1"/>
+                <field name="parent_index" string="Parent Index" attrs="{'invisible': [('is_child', '=', False)]}"/>
+                <field name="origin" string="Origin" attrs="{'invisible': [('is_child', '=', False)]}"/>
+                <field name="product_width" string="Width"/>
+                <field name="product_length" string="Length"/>
+                <field name="product_area" string="Area"/>
+                <field name="so_line_id" string="SO Line" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_mrp_production_childs']" position="before">
+                <button class="oe_stat_button" name="action_view_mrp_production_childs_customes" type="object"
+                        icon="fa-wrench" attrs="{'invisible': [('mrp_production_child_count_custom', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="mrp_production_child_count_custom"/>
+                        </span>
+                        <span class="o_stat_text">Child MO</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_tree" model="ir.ui.view">
+        <field name="name">mrp.production.tree.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_qty']" position="before">
+                <field name="product_width"/>
+                <field name="product_length"/>
+                <field name="product_area"/>
+                <field name="full_index"/>
+                <field name="order_subtotal"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="domain">[('is_child', '=', False)]</field>
+    </record>
+</odoo>
+
+
+
